@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        {
+          "header": "Referer",
+          "operation": "set",
+          "value": "https://multi-youtube-viewer.example/"
+        }
+      ]
+    },
+    "condition": {
+      "regexFilter": "^https://www\\.youtube(-nocookie)?\\.com/embed/.*[?&]myv=1",
+      "resourceTypes": ["sub_frame"]
+    }
+  }
+]

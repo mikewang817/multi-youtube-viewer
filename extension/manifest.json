@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "Multi YouTube Viewer",
+  "description": "在一个屏幕上同时观看最多 9 个 YouTube 视频，支持无缝网格排列与自由移动布局。",
+  "version": "1.2.0",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "tabs",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://www.youtube.com/*",
+    "*://www.youtube-nocookie.com/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "myv_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "打开多屏播放页"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*",
+        "*://m.youtube.com/*"
+      ],
+      "js": [
+        "common.js",
+        "multiview.js",
+        "content.js"
+      ],
+      "css": [
+        "multiview.css",
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

@@ -1,0 +1,116 @@
+/* Multi YouTube Viewer — youtube.com 站内元素（悬浮舱 / 观看页按钮 / 缩略图悬停按钮） */
+
+#myv-cluster {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147482980;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-family: "Roboto", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+/* ---------- 悬浮舱 ---------- */
+#myv-dock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 23px;
+  background: rgba(22, 22, 26, .82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .45);
+  transition: transform .15s cubic-bezier(.3, 1.4, .6, 1), background .15s;
+}
+#myv-dock:hover { background: rgba(40, 40, 46, .92); transform: translateY(-2px) scale(1.04); }
+#myv-dock:active { transform: scale(.96); }
+
+.myv-dock-mark { color: #ff4d4a; font-size: 14px; letter-spacing: 1px; }
+
+.myv-dock-count {
+  min-width: 21px;
+  height: 21px;
+  padding: 0 6px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+  transition: background .15s;
+}
+#myv-dock.myv-has-videos .myv-dock-count { background: #ff4d4a; }
+
+/* 后台播放中的跳动指示条 */
+.myv-dock-eq {
+  display: none;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+#myv-dock.myv-playing .myv-dock-eq { display: inline-flex; }
+.myv-dock-eq i {
+  width: 3px;
+  border-radius: 2px;
+  background: #ff4d4a;
+  animation: myv-eq .9s ease-in-out infinite;
+}
+.myv-dock-eq i:nth-child(1) { height: 60%; animation-delay: 0s; }
+.myv-dock-eq i:nth-child(2) { height: 100%; animation-delay: .25s; }
+.myv-dock-eq i:nth-child(3) { height: 75%; animation-delay: .5s; }
+@keyframes myv-eq {
+  0%, 100% { transform: scaleY(.5); }
+  50% { transform: scaleY(1); }
+}
+
+/* ---------- 观看页快捷按钮 ---------- */
+#myv-watch-pill {
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 19px;
+  background: rgba(22, 22, 26, .82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .4);
+  transition: background .15s, transform .15s;
+}
+#myv-watch-pill:hover { background: #ff4d4a; border-color: #ff4d4a; transform: translateY(-1px); }
+
+/* ---------- 缩略图悬停按钮 ---------- */
+#myv-hover-btn {
+  position: fixed;
+  z-index: 2147482985;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 8px;
+  background: rgba(15, 15, 18, .88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .5);
+  font-family: "Roboto", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  transition: background .12s;
+}
+#myv-hover-btn:hover { background: #ff4d4a; border-color: #ff4d4a; }
+
+/* 添加成功等反馈 */
+#myv-hover-btn.myv-flash,
+#myv-watch-pill.myv-flash { background: #1f9d4e; border-color: #1f9d4e; }
